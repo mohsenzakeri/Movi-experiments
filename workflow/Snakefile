@@ -1,0 +1,61 @@
+configfile: "config.yaml"
+
+t = config["TIME"]
+
+movi_default = config['MOVI_BUILD'] + "/movi-default"
+movi_constant = config['MOVI_BUILD'] + "/movi-constant"
+spumoni = config['SPUMONI_BUILD'] + "/spumoni_main"
+minimap2 = config["MINIMAP2_BINARY"]
+fulgor = config["FULGOR_BINARY"]
+
+workdir: config["MAIN_DIR"]
+
+include: "indexes.smk"
+include: "runs.smk"
+include: "logs.smk"
+include: "cache.smk"
+include: "scalability.smk"
+include: "counts.smk"
+
+rule all:
+    input:
+        # scalability indexes
+        expand("hprc/indexes/fulgor.hprc_{n}.regular/fi.hybrid.index", n = ['1', '5', '10', '25', '50', '75', '94']),
+        expand("hprc/indexes/spumoni.hprc_{n}.regular/sp.fa.thrbv.spumoni", n = ['1', '5', '10', '25', '50', '75', '94']),
+        expand("hprc/indexes/movi_default.hprc_{n}.regular/movi_index.bin", n = ['1', '5', '10', '25', '50', '75', '94']),
+        expand("{exp}/indexes/bowtie2.{ref}.regular/bowtie2.1.bt2l", exp = ['zymo'], ref=['bacteria']),
+        # query different indexes
+        expand("{exp}/runs/{sample}.{ref}.regular.{tool}",
+                        exp = ["zymo"],
+                        sample = ["SRR11071395"],
+                        ref = ["bacteria"],
+                        tool = ["minimap2.alignments.paf", "spumoni.pseudo_lengths", "fulgor.pseudo_alignments",
+                               "movi_default.pseudo_lengths", "movi_constant.pseudo_lengths"]),
+        expand("{exp}/runs/{sample}.{ref}.regular.{tool}",
+                        exp = ["hprc"],
+                        sample = ["combined_shuffled"],
+                        ref = ["hprc_1, hprc_94"],
+                        tool = ["spumoni.pseudo_lengths", "fulgor.pseudo_alignments", "movi_default.pseudo_lengths"]),
+        # count queries
+        expand("{exp}/counts/{sample}.{ref}.regular.{tool}.count",
+                        exp = ["zymo"],
+                        sample = ["ref_mason_exp4_10M"],
+                        ref = ["bacteria"],
+                        tool = ['movi_default', 'movi_constant', 'rindex']),
+        # measure number of cache misses
+        expand("{exp}/cache/{sample}.{ref}.regular.cachegrind.{tool}.pseudo_lengths",
+                        exp = ['zymo'],
+                        sample=['SRR11071395'],
+                        ref = ['bacteria'],
+                        tool = ['movi_default', 'movi_constant', 'spumoni']),
+        # measure move structure statistics
+        expand("{exp}/logs/{sample}.{ref}.regular.{tool}.pseudo_lengths.log",
+                        exp = ['zymo'],
+                        sample = ['SRR11071395'],
+                        ref = ['bacteria'],
+                        tool = ['movi_default', 'movi_constant'])
+
+#################################################### auxiliary functions
+
+def create_command(time_output, binary, options, log_output):
+    return t + " " + time_output + " " + binary + " " + options + " > " + log_output + " 2>&1"

@@ -1,0 +1,21 @@
+MAIN_DIR: "/vast/blangme2/mzakeri1/Move/recomb"
+TIME: "/usr/bin/time -o "
+PFP_BUILD: "/home/mzakeri1/pfp-thresholds/build"
+R_PERMUTE_BUILD: "/home/mzakeri1/r-permute/build"
+CHM13_FASTA: "/home/mzakeri1/data_blangme2/fasta/chm13_v2.0/chm13v2.0.fasta"
+PSBISM2_DIR: "/home/mzakeri1/vast-blangme2/mzakeri1/softwares/pbsim2"
+
+MOVI_BUILD: "/home/mzakeri1/marlin/build"
+RINDEX_BUILD: "/home/mzakeri1/vast-blangme2/mzakeri1/softwares/r-index/build"
+SPUMONI_BUILD: "/home/mzakeri1/spumoni/build"
+BOWTIE2_DIR: "/home/mzakeri1/bowtie2_fast/bowtie2"
+MINIMAP2_BINARY: "/home/mzakeri1/vast-blangme2/mzakeri1/softwares/minimap2-2.26_x64-linux/minimap2"
+FULGOR_BINARY: "/home/mzakeri1/fulgor/build/fulgor"
+
+movi_default_debug: "/home/mzakeri1/marlin/debug/movi"
+movi_constant: "/home/mzakeri1/marlin/build/movi-constant"
+movi_constant_debug: "/home/mzakeri1/marlin/debug_constant/movi"
+
+spumoni_cache: "/home/mzakeri1/spumoni/build_cache_release/spumoni"
+spumoni_debug: "/home/mzakeri1/spumoni/Debug/spumoni_debug"
+
