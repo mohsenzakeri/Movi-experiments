@@ -15,7 +15,7 @@ This repository includes the workflow for the main experiments in:
 ### Instructions
 After cloning the repository, please modify the config file `workflow/config.yaml` to include the correct paths on your system. For the `MAIN_DIR`, use the path to the main directory of this repository.
 
-To create the results, please install `Snakemake` and then run the following from the main directory of the repository:
+To create the results, please install `Snakemake` and then run the following from the `workflow` directory of the repository:
 ```
 Snakemake -c4
 ```
