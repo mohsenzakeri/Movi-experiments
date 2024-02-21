@@ -100,7 +100,7 @@ rule fastq_to_fasta:
     output:
         fasta = "{exp}/reads/{sample}.fasta"
     run:
-        shell("cat {input.fastq} | paste - - - - |cut -f 1, 2| sed 's/@/>/'g | tr -s \"/t\" \"/n\" > {output.fasta}")
+        shell("cat {input.fastq} | paste - - - - |cut -f1,2| sed 's/@/>/'g | tr -s \"/t\" \"/n\" > {output.fasta}")
 
 #################################################### fasta rules
 

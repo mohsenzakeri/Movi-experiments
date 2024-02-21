@@ -18,6 +18,7 @@ rule build_bowtie2_index:
         time = "{exp}/indexes/bowtie2.{ref}.{alphabet}/bowtie2.build.time",
         cmd = "{exp}/indexes/bowtie2.{ref}.{alphabet}/bowtie2.build.cmd"
     run:
+        shell("mkdir -p {wildcards.exp}/indexes")
         shell("mkdir -p {wildcards.exp}/indexes/bowtie2.{wildcards.ref}.{wildcards.alphabet}")
         options = "--large-index {input.fasta} {wildcards.exp}/indexes/bowtie2.{wildcards.ref}.{wildcards.alphabet}/bowtie2"
         cmd = create_command(output.time, bowtie2_build, options, output.log)
@@ -34,6 +35,7 @@ rule build_minimap2_index:
         time = "{exp}/indexes/minimap2.{ref}.{alphabet}/build.minimap2.time",
         cmd = "{exp}/indexes/minimap2.{ref}.{alphabet}/build.minimap2.cmd"
     run:
+        shell("mkdir -p {wildcards.exp}/indexes")
         shell("mkdir -p {wildcards.exp}/indexes/minimap2.{wildcards.ref}.{wildcards.alphabet}")
         options =  " -x map-ont -d {output.indx} {input.fasta}"
         cmd = create_command(output.time, minimap2, options, output.log)
@@ -50,6 +52,7 @@ rule build_fulgor_index:
         time = "{exp}/indexes/fulgor.{ref}.{alphabet}/build.fulgor.time",
         cmd = "{exp}/indexes/fulgor.{ref}.{alphabet}/build.fulgor.cmd"
     run:
+        shell("mkdir -p {wildcards.exp}/indexes")
         shell("mkdir -p {wildcards.exp}/indexes/fulgor.{wildcards.ref}.{wildcards.alphabet}")
         options = "build -l {input.fasta_list} -o {wildcards.exp}/indexes/fulgor.{wildcards.ref}.{wildcards.alphabet}/fi -k 31 -m 19 -d /tmp/ -t 16 "
         cmd = create_command(output.time, fulgor, options, output.log)
@@ -81,6 +84,7 @@ rule build_spumoni_index:
         time = "{exp}/indexes/spumoni.{ref}.{alphabet}/build.spumoni.time",
         cmd = "{exp}/indexes/spumoni.{ref}.{alphabet}/build.spumoni.cmd"
     run:
+        shell("mkdir -p {wildcards.exp}/indexes")
         shell("mkdir -p {wildcards.exp}/indexes/spumoni.{wildcards.ref}.{wildcards.alphabet}")
         options = "build -i {input.fasta_list} -o {wildcards.exp}/indexes/spumoni.{wildcards.ref}.{wildcards.alphabet}/sp -P -n"
         cmd = create_command(output.time, spumoni, options, output.log)
@@ -154,6 +158,7 @@ rule movi_prepare_ref:
         time = "{exp}/indexes/movi_default.{ref}.{alphabet}/build.prepare_ref.time",
         cmd = "{exp}/indexes/movi_default.{ref}.{alphabet}/build.prepare_ref.cmd"
     run:
+        shell("mkdir -p {wildcards.exp}/indexes")
         shell("mkdir -p {wildcards.exp}/indexes/movi_default.{wildcards.ref}.{wildcards.alphabet}")
         options = "{input.fasta_list} {output.fasta} list"
         cmd = create_command(output.time, prepare_ref, options, output.log)
@@ -218,6 +223,7 @@ rule prepare_rindex:
     output:
         fasta_out = "{exp}/indexes/rindex.{ref}.{alphabet}/ref.fa"
     run:
+        shell("mkdir -p {wildcards.exp}/indexes")
         shell("mkdir -p {wildcards.exp}/indexes/rindex.{wildcards.ref}.{wildcards.alphabet}")
         shell("cp {input.fasta_in} {output.fasta_out}")
 
