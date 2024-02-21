@@ -1,0 +1,2 @@
+wget https://sra-pub-run-odp.s3.amazonaws.com/sra/SRR9847854/SRR9847854
+fastq-dump ./SRR9847854
