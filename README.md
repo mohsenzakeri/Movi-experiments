@@ -1,4 +1,4 @@
-# Movi-experiments
+# Movi experiments
 
 This repository includes the workflow for the main experiments in:
 >[Zakeri, Mohsen, Brown, Nathaniel K., Ahmed, Omar Y., Gagie, Travis, and Langmead, Ben. "Movi: a fast and cache-efficient full-text pangenome index". bioRxiv preprint (2023)](https://www.biorxiv.org/content/10.1101/2023.11.04.565615v2)
