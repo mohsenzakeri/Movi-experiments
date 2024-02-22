@@ -23,6 +23,7 @@ rule all:
         expand("hprc/indexes/fulgor.hprc_{n}.regular/fi.hybrid.index", n = ['1', '5', '10', '25', '50', '75', '94']),
         expand("hprc/indexes/spumoni.hprc_{n}.regular/sp.fa.thrbv.spumoni", n = ['1', '5', '10', '25', '50', '75', '94']),
         expand("hprc/indexes/movi_default.hprc_{n}.regular/movi_index.bin", n = ['1', '5', '10', '25', '50', '75', '94']),
+        # bowtie2 index
         expand("{exp}/indexes/bowtie2.{ref}.regular/bowtie2.1.bt2l", exp = ['zymo'], ref=['bacteria']),
         # query different indexes
         expand("{exp}/runs/{sample}.{ref}.regular.{tool}",
@@ -34,7 +35,7 @@ rule all:
         expand("{exp}/runs/{sample}.{ref}.regular.{tool}",
                         exp = ["hprc"],
                         sample = ["combined_shuffled"],
-                        ref = ["hprc_1, hprc_94"],
+                        ref = ["hprc_1", "hprc_94"],
                         tool = ["spumoni.pseudo_lengths", "fulgor.pseudo_alignments", "movi_default.pseudo_lengths"]),
         # count queries
         expand("{exp}/counts/{sample}.{ref}.regular.{tool}.count",
