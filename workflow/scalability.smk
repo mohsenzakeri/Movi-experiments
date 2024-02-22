@@ -6,6 +6,6 @@ rule create_scalability_refs:
     output:
         scalability_list = "{exp}/refs/{exp}_{i}.txt",
     run:
-        cmd = "head -n{i} {input.fasta_list} > {wildcards.exp}/refs/{wildcards.exp}_{i}.txt"
+        cmd = "head -n{wildcards.i} {input.fasta_list} > {wildcards.exp}/refs/{wildcards.exp}_{wildcards.i}.txt"
         print(cmd)
         shell(cmd)
