@@ -92,7 +92,7 @@ rule build_spumoni_index:
         shell("echo {cmd} > {output.cmd}")
         shell(cmd)
 
-rule build_movi_index:
+rule build_movi_default_index:
     input:
         fasta = "{exp}/indexes/movi_default.{ref}.{alphabet}/ref.fa",
         bwt = "{exp}/indexes/movi_default.{ref}.{alphabet}/ref.fa.bwt",
