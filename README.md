@@ -3,7 +3,7 @@
 This repository includes the workflow for the main experiments in:
 >[Zakeri, Mohsen, Brown, Nathaniel K., Ahmed, Omar Y., Gagie, Travis, and Langmead, Ben. "Movi: a fast and cache-efficient full-text pangenome index". bioRxiv preprint (2023)](https://www.biorxiv.org/content/10.1101/2023.11.04.565615v2)
 
-### Main tools benchmarkeed in the experiments on the paper
+### Main tools benchmarkeed in the experiments of the paper
 
 - Movi: [https://github.com/mohsenzakeri/Movi](https://github.com/mohsenzakeri/Movi/releases/tag/v1.0)
 - SPUMONI: [https://github.com/oma219/spumoni](https://github.com/oma219/spumoni/tree/v2.0.7)
