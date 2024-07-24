@@ -1,2 +1,4 @@
 .snakemake/*
 workflow/.snakemake/*
+worlflow/tests/
+worlflow/tests/*
