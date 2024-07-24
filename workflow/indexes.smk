@@ -92,6 +92,23 @@ rule build_spumoni_index:
         shell("echo {cmd} > {output.cmd}")
         shell(cmd)
 
+rule build_spumoni2_index:
+    input:
+        fasta_list = "{exp}/refs/{ref}.txt"
+    output:
+        indx = "{exp}/indexes/spumoni2.{ref}.{alphabet}/sp.bin.thrbv.spumoni",
+        log = "{exp}/indexes/spumoni2.{ref}.{alphabet}/build.spumoni.log",
+        time = "{exp}/indexes/spumoni2.{ref}.{alphabet}/build.spumoni.time",
+        cmd = "{exp}/indexes/spumoni2.{ref}.{alphabet}/build.spumoni.cmd"
+    run:
+        shell("mkdir -p {wildcards.exp}/indexes")
+        shell("mkdir -p {wildcards.exp}/indexes/spumoni2.{wildcards.ref}.{wildcards.alphabet}")
+        options = "build -i {input.fasta_list} -o {wildcards.exp}/indexes/spumoni2.{wildcards.ref}.{wildcards.alphabet}/sp -P -m"
+        cmd = create_command(output.time, spumoni, options, output.log)
+        print(cmd)
+        shell("echo {cmd} > {output.cmd}")
+        shell(cmd)
+
 rule build_movi_default_index:
     input:
         fasta = "{exp}/indexes/movi_default.{ref}.{alphabet}/ref.fa",

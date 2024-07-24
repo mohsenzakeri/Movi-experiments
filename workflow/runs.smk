@@ -56,6 +56,26 @@ rule run_spumoni:
         shell(cmd)
         shell("mv {input.reads}.pseudo_lengths {output.pseudo_lengths}")
 
+rule run_spumoni2:
+    input:
+        index = "{exp}/indexes/spumoni2.{ref}.{alphabet}/sp.bin.thrbv.spumoni",
+        reads = "{exp}/reads/{sample}.fasta"
+    output:
+        pseudo_lengths = "{exp}/runs/{sample}.{ref}.{alphabet}.spumoni2.pseudo_lengths",
+        report = "{exp}/runs/{sample}.{ref}.{alphabet}.spumoni2.report",
+        log = "{exp}/runs/{sample}.{ref}.{alphabet}.spumoni2.pseudo_lengths.log",
+        time = "{exp}/runs/{sample}.{ref}.{alphabet}.spumoni2.pseudo_lengths.time",
+        cmd = "{exp}/runs/{sample}.{ref}.{alphabet}.spumoni2.pseudo_lengths.cmd"
+    run:
+        shell("mkdir -p {wildcards.exp}/runs")
+        options = "run -r {wildcards.exp}/indexes/spumoni2.{wildcards.ref}.{wildcards.alphabet}/sp -p {input.reads} -P -m -c"
+        cmd = create_command(output.time, spumoni, options, output.log)
+        print(cmd)
+        shell("echo {cmd} > {output.cmd}")
+        shell(cmd)
+        shell("mv {input.reads}.pseudo_lengths {output.pseudo_lengths}")
+        shell("mv {input.reads}.report {output.report}")
+
 rule run_movi_default:
     input:
         index = "{exp}/indexes/movi_default.{ref}.{alphabet}/movi_index.bin",
