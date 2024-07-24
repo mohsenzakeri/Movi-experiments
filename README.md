@@ -17,5 +17,5 @@ After cloning the repository, please modify the config file `workflow/config.yam
 
 To create the results, please install `Snakemake` and then run the following from the `workflow` directory of the repository:
 ```
-Snakemake -c4
+Snakemake -c1
 ```
